@@ -1,0 +1,23 @@
+{
+    "name": "larakit/sf-jquery-file-upload",
+    "description": "[Larakit] [staticfiles] sf-jquery-file-upload",
+    "keywords": [
+        "larakit",
+        "angular"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alexey Berdnikov",
+            "email": "aberdnikov@gmail.com"
+        }
+    ],
+    "require": {
+        "larakit/sf-larakit-js":"*"
+    },
+    "autoload": {
+        "files": [
+            "init.php"
+        ]
+    }
+}
