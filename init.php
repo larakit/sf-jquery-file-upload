@@ -1,0 +1,10 @@
+<?php
+\Larakit\StaticFiles\Manager::package('larakit/sf-jquery-file-upload')
+    ->setSourceDir('public')
+    ->usePackage('larakit/sf-larakit-js')
+    ->jsPackage('js/jquery.ui.widget.js')
+    ->jsPackage('js/jquery.iframe-transport.js')
+    ->jsPackage('js/jquery.fileupload.js')
+    ->jsPackage('js/init.js')
+    ->cssPackage('css/jquery.fileupload.css')
+;
