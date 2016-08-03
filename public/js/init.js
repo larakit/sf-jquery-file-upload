@@ -1,17 +1,24 @@
 LarakitJs.initSelector('.js-fileupload', function () {
     var self = $(this),
         url = self.attr('data-url'),
-        $list = self.attr('data-list'),
+        key = self.attr('data-key'),
+        callback_done = self.attr('data-callback-done'),
         $progress = self.attr('data-progress'),
         mimes = self.attr('data-mimes'),
         mimes_error = self.attr('data-mimes-error');
     self.fileupload();
     self.fileupload('option', {
         maxFileSize: 999000,
-        done: function (e, data) {
-            $(data.result.row).appendTo($list);
+        done: function (e, response) {
+            if (callback_done) {
+                callback_done = eval(callback_done);
+                // $(response.result.row).appendTo($list);
+                if ('function' == typeof (callback_done)) {
+                    callback_done.call(self, response.result);
+                }
+            }
             LarakitJs.fire();
-            larakit_toastr(data.result);
+            larakit_toastr(response.result);
         },
         error: function (e, data) {
             toastr.error('Произошла ошибка при загрузке файла');
@@ -21,7 +28,7 @@ LarakitJs.initSelector('.js-fileupload', function () {
             $($progress + ' .progress-bar').css('width', progress + '%');
         },
         add: function (e, data) {
-            console.log(data);
+            // console.log(data);
             var uploadErrors = [];
             if (mimes != undefined) {
                 var acceptFileTypes = new RegExp(mimes, "i");
